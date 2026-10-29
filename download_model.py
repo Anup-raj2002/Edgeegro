@@ -1,0 +1,16 @@
+import urllib.request
+from pathlib import Path
+
+base_url = (
+    "https://storage.openvinotoolkit.org/repositories/open_model_zoo/"
+    "2022.1/models_bin/3/human-pose-estimation-0001/FP16-INT8/"
+)
+
+save_dir = Path("models/human-pose-estimation-0001/FP16-INT8")
+save_dir.mkdir(parents=True, exist_ok=True)
+
+for name in ["human-pose-estimation-0001.xml", "human-pose-estimation-0001.bin"]:
+    print("Downloading", name)
+    urllib.request.urlretrieve(base_url + name, save_dir / name)
+
+print("Done. Files saved to", save_dir)
